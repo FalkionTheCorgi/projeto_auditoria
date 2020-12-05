@@ -1,0 +1,27 @@
+body {
+    background-image: url(../img/bg.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-blend-mode: luminosity;
+    background-position: center;
+}
+
+.row_form, .row_sucesso{
+    justify-content: center;
+}
+
+.caixa_login, .caixa_sucesso{
+    margin-top: 20%;
+    padding: 90px;
+    background-color: #dcdcdc;
+    border-radius: 10px;
+}
+
+.row_title{
+    padding: 100px;
+}
+
+.title{
+    text-align: center;
+}
