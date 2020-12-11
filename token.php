@@ -1,8 +1,33 @@
 <?php
+
+function generateRandomString($length = 5) {
+    return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+}
+
+$randoString =   generateRandomString(); 
 session_start();
 include('verifica_login.php');
 $usuario = $_SESSION['usuario'] ;
-$usuario_status =  $_SESSION['usuario_status'];
+#$usuario_status =  $_SESSION['usuario_status'];
+$email = $_SESSION['email'] ;
+
+
+$to      = $email; // email destinatario
+$subject = "Email de verificação"; // Assunto do email
+$message = "
+  
+Obrigado por fazer login!
+
+------------------------
+Username: '.$usuario.'
+token:    '.$randoString.'
+------------------------
+  
+"; 
+                      
+$headers = "From:noreply@trabalhoSegInfo.com" . "\r\n"; // Set from headers
+mail($to, $subject, $message, $headers); // Send our email
+
 
 ?>
 
@@ -26,7 +51,7 @@ $usuario_status =  $_SESSION['usuario_status'];
         </div> -->
         <div class="row row_sucesso">
             <div class="caixa_sucesso">
-                <h1>LOGIN EFETUADO COM SUCESSO</h1>
+                <h1>Verficação de token</h1>
                 <h4 class = "text-center">Bem Vindo, <?= $usuario ?> </h4>
                 <div class="col-lg-12">
                     <h2>Nome: </h2>
