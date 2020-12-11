@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -20,27 +17,17 @@ session_start();
         </div> -->
         <div class="row row_form">
             <div class="caixa_login">
-                <form action = "login.php" method='POST'>
+                <form action = "">
                     <!--<div class="col-lg-12"><img src="img/icon.png" alt="" class="logo"></div>-->
                     <h3>Titulo do Sistema </h3>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Usuário</label>
-                        <input name="usuario" type="text" class="form-control" id="user" placeholder="Usuário">
+                        <input type="text" class="form-control" id="user" placeholder="Usuário">
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha</label>
-                        <input name="senha" type="password" class="form-control" id="password" placeholder="Senha">
+                        <input type="password" class="form-control" id="password" placeholder="Senha">
                     </div>
-                    <?php
-                    if(isset($_SESSION['autenticado'])){ ?>
-                        <div class="invalid-feedback d-block">Usuário e senha invalidos</div>
-
-                    <?php } else unset($_SESSION['nao_autenticado']) ?>
-
-                    
-                    
-                    
-                  
                     <button type="submit" class="btn btn-primary">Entrar</button>
                 </form>
             </div>

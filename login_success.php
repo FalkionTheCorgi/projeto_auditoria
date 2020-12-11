@@ -1,12 +1,3 @@
-<?php
-session_start();
-include('verifica_login.php');
-$usuario = $_SESSION['usuario'] ;
-$usuario_status =  $_SESSION['usuario_status'];
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -27,7 +18,7 @@ $usuario_status =  $_SESSION['usuario_status'];
         <div class="row row_sucesso">
             <div class="caixa_sucesso">
                 <h1>LOGIN EFETUADO COM SUCESSO</h1>
-                <h4 class = "text-center">Bem Vindo, <?= $usuario ?> </h4>
+                <h4 class = "text-center">Bem Vindo, </h4>
                 <div class="col-lg-12">
                     <h2>Nome: </h2>
                     <h2>dado2: </h2>
@@ -37,10 +28,6 @@ $usuario_status =  $_SESSION['usuario_status'];
                 </div>
             </div>
         </div>
-        <form form action = "logout.php" method='POST'>
-            <button type="submit" class="btn btn-danger">Sair</button>
-        </form>
-
     </div>    
 </body>
 </html>
