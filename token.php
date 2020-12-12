@@ -1,11 +1,12 @@
 <?php
+session_start();
 
 function generateRandomString($length = 5) {
     return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
 }
 
-$randoString =   generateRandomString(); 
-session_start();
+$tokenUser =   generateRandomString();
+$_SESSION['token']  =  $tokenUser;
 include('verifica_login.php');
 $usuario = $_SESSION['usuario'] ;
 #$usuario_status =  $_SESSION['usuario_status'];
@@ -19,13 +20,13 @@ $message = "
 Obrigado por fazer login!
 
 ------------------------
-Username: '.$usuario.'
-token:    '.$randoString.'
+Username: '$usuario'
+token:    '$tokenUser'
 ------------------------
   
 "; 
                       
-$headers = "From:noreply@trabalhoSegInfo.com" . "\r\n"; // Set from headers
+$headers = "From:trabalhoseginfot@gmail.com" . "\r\n"; // Set from headers
 mail($to, $subject, $message, $headers); // Send our email
 
 
@@ -52,14 +53,18 @@ mail($to, $subject, $message, $headers); // Send our email
         <div class="row row_sucesso">
             <div class="caixa_sucesso">
                 <h1>Verficação de token</h1>
-                <h4 class = "text-center">Bem Vindo, <?= $usuario ?> </h4>
-                <div class="col-lg-12">
-                    <h2>Nome: </h2>
-                    <h2>dado2: </h2>
-                    <h2>dado3: </h2>
-                    <h2>dado4: </h2>
-                    <h2>dado5: </h2>
-                </div>
+                <h4 class = "text-center">Bem Vindo, <?= $usuario ?>. Um token foi enviado para seu email. Favor confirmar abaixo: </h4>
+                
+                <form action = "verifica_token.php" method='POST'>
+                    <!--<div class="col-lg-12"><img src="img/icon.png" alt="" class="logo"></div>-->
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Token</label>
+                        <input name="token_form" type="text" class="form-control" id="user" placeholder="Token">
+                    </div>
+                
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                </form>
+                
             </div>
         </div>
         <form form action = "logout.php" method='POST'>
