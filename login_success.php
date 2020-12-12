@@ -28,12 +28,13 @@ $usuario_status =  $_SESSION['usuario_status'];
             <div class="caixa_sucesso">
                 <h1>LOGIN EFETUADO COM SUCESSO</h1>
                 <h4 class = "text-center">Bem Vindo, <?= $usuario ?> </h4>
+                <h5 class = "text-center" id="statusUser"> </h5>
                 <div class="col-lg-12">
-                    <h2>Nome: </h2>
-                    <h2>dado2: </h2>
-                    <h2>dado3: </h2>
-                    <h2>dado4: </h2>
-                    <h2>dado5: </h2>
+                    <h6>Nome: </h6>
+                    <h6>dado2: </h6>
+                    <h6>dado3: </h6>
+                    <h6>dado4: </h6>
+                    <h6>dado5: </h6>
                 </div>
             </div>
         </div>
@@ -43,4 +44,21 @@ $usuario_status =  $_SESSION['usuario_status'];
 
     </div>    
 </body>
+
+<script type="text/javascript">
+    var myvar='<?php echo $_SESSION['usuario_status'];?>';
+    var intmyvar = parseInt(myvar);
+    var statusUser;
+    if(intmyvar == 0){
+        statusUser = "Administrativo";
+    }else if(intmyvar == 1){
+        statusUser = "Comum";
+    }else if(intmyvar == 2){
+        statusUser = "Especial"
+    }
+    document.getElementById('statusUser').innerHTML = "Perfil: "+statusUser;
+</script>
+
 </html>
+
+
