@@ -34,9 +34,9 @@ session_start();
                     <?php
                     if(isset($_SESSION['autenticado'])){ ?>
                         <div class="invalid-feedback d-block">Usuário e senha invalidos</div>
-
                     <?php } else unset($_SESSION['nao_autenticado']) ?>
                    
+
                   
                     <button type="submit" class="btn btn-primary">Entrar</button>
                 </form>

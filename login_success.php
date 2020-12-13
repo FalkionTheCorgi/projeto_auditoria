@@ -33,12 +33,31 @@ $email = $_SESSION['email'];
             <div class="caixa_sucesso">
                 <h1>LOGIN EFETUADO COM SUCESSO</h1>
                 <h4 class = "text-center">Bem Vindo, <?= $usuario ?> </h4>
+
                 <form form action = "logout.php" method='POST'>
                     <button type="submit" class="btn btn-danger">Sair</button>
                 </form>
+
             </div>
         </div>
 
     </div>    
 </body>
+
+<script type="text/javascript">
+    var myvar='<?php echo $_SESSION['usuario_status'];?>';
+    var intmyvar = parseInt(myvar);
+    var statusUser;
+    if(intmyvar == 0){
+        statusUser = "Administrativo";
+    }else if(intmyvar == 1){
+        statusUser = "Comum";
+    }else if(intmyvar == 2){
+        statusUser = "Especial"
+    }
+    document.getElementById('statusUser').innerHTML = "Perfil: "+statusUser;
+</script>
+
 </html>
+
+
