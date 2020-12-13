@@ -25,3 +25,20 @@ body {
 .title{
     text-align: center;
 }
+
+.menu{
+    display: block;
+}
+
+.data_table{
+    margin-top: 10%;
+    background-color: white;
+}
+
+div#example_wrapper{
+    padding: 1%;
+}
+.button-azul{
+    float: right;
+    margin: 2%;
+}

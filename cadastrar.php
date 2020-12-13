@@ -20,25 +20,34 @@ session_start();
         </div> -->
         <div class="row row_form">
             <div class="caixa_login">
-                <form action = "login.php" method='POST'>
+                <form action = "cad.php" method='POST'>
                     <!--<div class="col-lg-12"><img src="img/icon.png" alt="" class="logo"></div>-->
-                    <h3>Trabalho de Auditoria </h3>
+                    <h3>Cadastrar </h3>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Usuário</label>
-                        <input name="usuario" type="text" class="form-control" id="user" placeholder="Usuário">
+                        <input name="usuario" type="text" class="form-control" id="user" placeholder="Usuário" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha</label>
-                        <input name="senha" type="password" class="form-control" id="password" placeholder="Senha">
+                        <input name="senha" type="password" class="form-control" id="password" placeholder="Senha" required>
                     </div>
-                    <?php
-                    if(isset($_SESSION['autenticado'])){ ?>
-                        <div class="invalid-feedback d-block">Usuário e senha invalidos</div>
-                    <?php } else unset($_SESSION['nao_autenticado']) ?>
-                   
-
-                  
-                    <button type="submit" class="btn btn-primary">Entrar</button>
+                    <div class="form-group">
+                        <label for="exampleInputnome">Nome</label>
+                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputemail">Email</label>
+                        <input name="email" type="text" class="form-control" id="email" placeholder="Email" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="status">Status</label>
+                    <select class="form-control" name="status" id="status" required>
+                        <option value="0">admin</option>
+                        <option value="1">comum</option>
+                        <option value="2">especial</option>
+                    </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Cadastrar</button>
                 </form>
             </div>
         </div>
