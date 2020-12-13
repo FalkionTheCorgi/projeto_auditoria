@@ -9,6 +9,7 @@ session_start();
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="jquery/jquery.js"></script>
     <title>Login</title>
 </head>
 <body>
@@ -25,19 +26,24 @@ session_start();
                     <h3>Cadastrar </h3>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Usuário</label>
-                        <input name="usuario" type="text" class="form-control" id="user" placeholder="Usuário" required>
+                        <input name="usuario" type="text" class="form-control" id="user" placeholder="Usuário" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputPassword1">Senha</label>
-                        <input name="senha" type="password" class="form-control" id="password" placeholder="Senha" required>
+                        <input name="senha" type="password" class="form-control" id="senha" placeholder="Senha" autocomplete="off" onchange="check_pass()" required>
+                        <div id="meter_wrapper">
+                            <div id="meter"></div>
+                        </div>
+                        <br>
+                        <span id="pass_type"></span>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputnome">Nome</label>
-                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" required>
+                        <input name="nome" type="text" class="form-control" id="nome" placeholder="Nome" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                         <label for="exampleInputemail">Email</label>
-                        <input name="email" type="text" class="form-control" id="email" placeholder="Email" required>
+                        <input name="email" type="text" class="form-control" id="email" placeholder="Email" autocomplete="off" required>
                     </div>
                     <div class="form-group">
                     <label for="status">Status</label>
@@ -53,4 +59,74 @@ session_start();
         </div>
     </div>    
 </body>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+    $("#senha").keyup(function(){
+        check_pass();
+    });
+    });
+
+    function check_pass()
+    {
+        var val=document.getElementById("senha").value;
+        var meter=document.getElementById("meter");
+        var no=0;
+        if(val!="")
+        {
+        // If the password length is less than or equal to 6
+        if(val.length<=6)no=1;
+
+        // If the password length is greater than 6 and contain any lowercase alphabet or any number or any special character
+        if(val.length>6 && (val.match(/[a-z]/) || val.match(/\d+/) || val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)))no=2;
+
+        // If the password length is greater than 6 and contain alphabet,number,special character respectively
+        if(val.length>6 && ((val.match(/[a-z]/) && val.match(/\d+/)) || (val.match(/\d+/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/)) || (val.match(/[a-z]/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))))no=3;
+
+        // If the password length is greater than 6 and must contain alphabets,numbers and special characters
+        if(val.length>6 && val.match(/[a-z]/) && val.match(/\d+/) && val.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/))no=4;
+
+        if(no==1)
+        {
+        $("#meter").animate({width:'50px'},300);
+            console.log('oi')
+            meter.style.backgroundColor="red";
+            document.getElementById("pass_type").innerHTML="Very Weak";
+        }
+
+        if(no==2)
+        {
+        $("#meter").animate({width:'100px'},300);
+            console.log('oi1')
+            meter.style.backgroundColor="#F5BCA9";
+            document.getElementById("pass_type").innerHTML="Weak";
+        }
+
+        if(no==3)
+        {
+        $("#meter").animate({width:'150px'},300);
+            console.log('oi2')
+            meter.style.backgroundColor="#FF8000";
+            document.getElementById("pass_type").innerHTML="Good";
+        }
+
+        if(no==4)
+        {
+        $("#meter").animate({width:'200px'},300);
+            console.log('oi3')
+            meter.style.backgroundColor="#00FF40";
+            document.getElementById("pass_type").innerHTML="Strong";
+        }
+        }
+
+        else
+        {
+            console.log('oi4')
+            meter.style.backgroundColor="white";
+            document.getElementById("pass_type").innerHTML="";
+        }
+    }
+</script>
+
+
 </html>
