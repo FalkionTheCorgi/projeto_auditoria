@@ -1,8 +1,10 @@
 <?php
 session_start();
 include('verifica_login.php');
+include('conexao.php');
 $usuario = $_SESSION['usuario'] ;
 $usuario_status =  $_SESSION['usuario_status'];
+$email = $_SESSION['email'];
 
 ?>
 
@@ -24,23 +26,20 @@ $usuario_status =  $_SESSION['usuario_status'];
                 <h2>ALGUM TITULO PARA O NOSSO SISTEMA </h2>
             </div>     
         </div> -->
+        <div class="row menu">
+            <?php include 'menu.php' ?>
+        </div>
         <div class="row row_sucesso">
             <div class="caixa_sucesso">
                 <h1>LOGIN EFETUADO COM SUCESSO</h1>
                 <h4 class = "text-center">Bem Vindo, <?= $usuario ?> </h4>
-                <h5 class = "text-center" id="statusUser"> </h5>
-                <div class="col-lg-12">
-                    <h6>Nome: </h6>
-                    <h6>dado2: </h6>
-                    <h6>dado3: </h6>
-                    <h6>dado4: </h6>
-                    <h6>dado5: </h6>
-                </div>
+
+                <form form action = "logout.php" method='POST'>
+                    <button type="submit" class="btn btn-danger">Sair</button>
+                </form>
+
             </div>
         </div>
-        <form form action = "logout.php" method='POST'>
-            <button type="submit" class="btn btn-danger">Sair</button>
-        </form>
 
     </div>    
 </body>
